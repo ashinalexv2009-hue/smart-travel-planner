@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ destination.city }} - Smart Travel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        SMART TRAVEL
+    </div>
+
+    <nav>
+
+        <a href="/">
+            HOME
+        </a>
+
+        <a href="/explore">
+            EXPLORE
+        </a>
+
+        <a href="/plan">
+            PLAN TRIP
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="destination-details">
+
+    <div class="details-card">
+
+        <div class="details-image">
+            <img
+                src="{{ url_for('static', filename='images/' + destination.city|lower|replace(' ', '_') + '.jpg') }}"
+                alt="{{ destination.city }}"
+            >
+        </div>
+
+        <p class="small-title">
+            DESTINATION
+        </p>
+
+        <h1>
+            {{ destination.city }}
+        </h1>
+
+        <p class="country">
+            🇮🇳 India
+        </p>
+
+
+        <div class="detail-item">
+
+            <span>
+                📍 Attraction
+            </span>
+
+            <strong>
+                {{ destination.attraction }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>
+                🏨 Hotel
+            </span>
+
+            <strong>
+                ₹{{ destination.hotel_cost }} / day
+            </strong>
+
+        </div>
+
+
+        <div class="details-actions">
+
+            <a href="/plan">
+
+                <button>
+                    PLAN YOUR TRIP →
+                </button>
+
+            </a>
+
+            <a href="/explore">
+
+                <button class="secondary-button">
+                    ← BACK TO EXPLORE
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

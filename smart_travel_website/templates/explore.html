@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Explore - Smart Travel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <div class="logo">
+            SMART TRAVEL
+        </div>
+
+        <nav>
+
+            <a href="/">
+                HOME
+            </a>
+
+            <a href="/explore">
+                EXPLORE
+            </a>
+
+            <a href="/plan">
+                PLAN TRIP
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- EXPLORE HEADER -->
+
+    <section class="explore-header">
+
+        <p class="small-title">
+            DISCOVER INDIA
+        </p>
+
+        <h1>
+            Explore Destinations
+        </h1>
+
+        <p>
+            Discover amazing places, attractions and
+            comfortable stays across India.
+        </p>
+
+    </section>
+
+
+    <!-- DESTINATION CARDS -->
+
+    <section class="destination-grid">
+
+        {% for place in destinations %}
+
+        <div class="destination-card">
+
+           <div class="destination-image">
+
+               <img
+                   src="{{ url_for('static', filename='images/' + place.city|lower|replace(' ', '_') + '.jpg') }}"
+                   alt="{{ place.city }}"
+                   onerror="this.style.display='none';"
+               >
+
+           </div>
+
+            <div class="destination-content">
+
+                <h2>
+                    {{ place.city }}
+                </h2>
+
+                <p class="attraction">
+                    {{ place.attraction }}
+                </p>
+
+                <div class="hotel-price">
+
+                    <span>
+                        Hotel
+                    </span>
+
+                    <strong>
+                        ₹{{ place.hotel_cost }}/day
+                    </strong>
+
+                </div>
+
+                <a href="/destination/{{ place.city }}">
+                     <button>
+                         VIEW DETAILS →
+                     </button>
+    
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+
+</body>
+
+</html>

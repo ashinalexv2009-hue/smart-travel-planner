@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Travel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <div class="logo">
+            SMART TRAVEL
+        </div>
+
+        <nav>
+            <a href="#">HOME</a>
+            <a href="/explore">EXPLORE</a>
+            <a href="/search">SEARCH</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                TRAVEL SMARTER
+            </p>
+
+            <h1>
+                YOUR JOURNEY.<br>
+                YOUR WAY.
+            </h1>
+
+            <p class="description">
+                Discover destinations, calculate travel costs
+                and plan your perfect trip with Smart Travel.
+            </p>
+
+            <a href="/plan">
+                <button>
+                    EXPLORE NOW →
+                </button>
+            </a>
+
+        </div>
+
+
+        <div class="hero-circle">
+            ✈️
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+       <a href="/search" class="card">
+
+    <div class="icon">
+        🔎
+    </div>
+
+    <h2>
+        Search Destination
+    </h2>
+
+    <p>
+        Find information about your destination,
+        attractions and estimated costs.
+    </p>
+
+</a>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🌍
+            </div>
+
+            <h2>
+                Explore
+            </h2>
+
+            <p>
+                Explore beautiful destinations across India
+                and discover something new.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🧳
+            </div>
+
+            <h2>
+                Plan Your Trip
+            </h2>
+
+            <p>
+                Enter your starting city, travelers and
+                number of days to estimate your trip cost.
+            </p>
+
+        </div>
+
+    </section>
+
+
+   
+
+</body>
+
+</html>

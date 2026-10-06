@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Trip Result - Smart Travel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        SMART TRAVEL
+    </div>
+
+    <nav>
+
+        <a href="/">
+            HOME
+        </a>
+
+        <a href="/plan">
+            PLAN TRIP
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="result-section">
+
+    <div class="result-box">
+
+        <p class="small-title">
+            YOUR TRIP PLAN
+        </p>
+
+        <h1>
+            {{ destination }}
+        </h1>
+
+        <p class="route">
+            {{ start_city }} → {{ destination }}
+        </p>
+
+
+        <div class="result-grid">
+
+            <div>
+                <span>Distance</span>
+                <strong>{{ distance }} km</strong>
+            </div>
+
+            <div>
+                <span>Travelers</span>
+                <strong>{{ travelers }}</strong>
+            </div>
+
+            <div>
+                <span>Days</span>
+                <strong>{{ days }}</strong>
+            </div>
+
+            <div>
+                <span>Travel Cost</span>
+                <strong>₹{{ travel_cost }}</strong>
+            </div>
+
+            <div>
+                <span>Hotel Cost</span>
+                <strong>₹{{ hotel_cost }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="total">
+
+            <span>
+                ESTIMATED TOTAL
+            </span>
+
+            <strong>
+                ₹{{ total }}
+            </strong>
+
+        </div>
+
+
+        <a href="/plan">
+
+            <button>
+                PLAN ANOTHER TRIP
+            </button>
+
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

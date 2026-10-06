@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Plan Your Trip - Smart Travel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            SMART TRAVEL
+        </div>
+
+        <nav>
+
+            <a href="/">
+                HOME
+            </a>
+
+            <a href="/explore">
+                EXPLORE
+            </a>
+
+            <a href="/plan">
+                PLAN TRIP
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="plan-section">
+
+        <div class="plan-box">
+
+            <p class="small-title">
+                PLAN YOUR JOURNEY
+            </p>
+
+            <h1>
+                Where do you want to go?
+            </h1>
+
+            <p class="description">
+                Enter your starting city and choose a destination.
+            </p>
+
+
+            <form action="/calculate" method="POST">
+
+                <label>
+                    Starting City
+                </label>
+
+                <input
+                    type="text"
+                    name="start_city"
+                    placeholder="Example: Thrissur"
+                    required
+                >
+
+
+                <label>
+                    Destination
+                </label>
+
+                <select name="destination" required>
+
+                    <option value="">
+                        Select destination
+                    </option>
+
+                    <option>Kochi</option>
+                    <option>Munnar</option>
+                    <option>Wayanad</option>
+                    <option>Ooty</option>
+                    <option>Panaji</option>
+                    <option>Jaipur</option>
+                    <option>Delhi</option>
+                    <option>Mumbai</option>
+                    <option>Bengaluru</option>
+                    <option>Hyderabad</option>
+                    <option>Chennai</option>
+                    <option>Trivandrum</option>
+                    <option>Mysore</option>
+                    <option>Agra</option>
+                    <option>Shimla</option>
+                    <option>Manali</option>
+                    <option>Rishikesh</option>
+                    <option>Darjeeling</option>
+                    <option>Amritsar</option>
+                    <option>Pondicherry</option>
+
+                </select>
+
+
+                <label>
+                    Number of Travelers
+                </label>
+
+                <input
+                    type="number"
+                    name="travelers"
+                    value="1"
+                    min="1"
+                    required
+                >
+
+
+                <label>
+                    Number of Days
+                </label>
+
+                <input
+                    type="number"
+                    name="days"
+                    value="1"
+                    min="1"
+                    required
+                >
+
+
+                <button type="submit">
+                    CALCULATE TRIP →
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>
