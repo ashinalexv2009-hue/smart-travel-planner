@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import mysql.connector
 import os
 from math import radians, sin, cos, sqrt, atan2
+from urllib.parse import urlparse
+
 app = Flask(__name__)
 
 # ==========================================================
@@ -9,23 +11,34 @@ app = Flask(__name__)
 # ==========================================================
 
 def connect_database():
-
     try:
+        database_url = os.environ.get("MYSQL_PUBLIC_URL")
 
-        conn = mysql.connector.connect(
-            host=os.environ.get("MYSQL_HOST", "localhost"),
-            user=os.environ.get("MYSQL_USER", "root"),
-            password=os.environ.get("MYSQL_PASSWORD"),
-            database=os.environ.get("MYSQL_DATABASE", "smart_travel"),
-            port=int(os.environ.get("MYSQL_PORT", "3306"))
-        )
+        if database_url:
+            url = urlparse(database_url)
+
+            conn = mysql.connector.connect(
+                host=url.hostname,
+                user=url.username,
+                password=url.password,
+                database=os.environ.get("MYSQL_DATABASE", "smart_travel"),
+                port=url.port
+            )
+
+        else:
+            conn = mysql.connector.connect(
+                host=os.environ.get("MYSQL_HOST", "localhost"),
+                user=os.environ.get("MYSQL_USER", "root"),
+                password=os.environ.get("MYSQL_PASSWORD", ""),
+                database=os.environ.get("MYSQL_DATABASE", "smart_travel"),
+                port=int(os.environ.get("MYSQL_PORT", 3306))
+            )
 
         return conn
 
-    except mysql.connector.Error:
-
+    except Exception as e:
+        print("Database connection error:", e)
         return None
-
 
 # ==========================================================
 # INDIAN CITY COORDINATES
