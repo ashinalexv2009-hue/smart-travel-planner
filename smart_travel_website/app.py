@@ -17,15 +17,19 @@ def connect_database():
         if database_url:
             url = urlparse(database_url)
 
+            print("Using MYSQL_PUBLIC_URL")
+
             conn = mysql.connector.connect(
                 host=url.hostname,
+                port=url.port,
                 user=url.username,
                 password=url.password,
-                database=os.environ.get("MYSQL_DATABASE", "smart_travel"),
-                port=url.port
+                database=os.environ.get("MYSQL_DATABASE", "smart_travel")
             )
 
         else:
+            print("Using MYSQL_HOST")
+
             conn = mysql.connector.connect(
                 host=os.environ.get("MYSQL_HOST", "localhost"),
                 user=os.environ.get("MYSQL_USER", "root"),
@@ -39,7 +43,6 @@ def connect_database():
     except Exception as e:
         print("Database connection error:", e)
         return None
-
 # ==========================================================
 # INDIAN CITY COORDINATES
 # ==========================================================
