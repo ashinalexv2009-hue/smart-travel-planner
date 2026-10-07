@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import mysql.connector
 import os
 from math import radians, sin, cos, sqrt, atan2
+app = Flask(__name__)
 
 # ==========================================================
 # DATABASE
