@@ -191,9 +191,12 @@ def home():
 
 @app.route("/plan")
 def plan():
+    destination = request.args.get("destination", "")
 
-    return render_template("plan.html")
-
+    return render_template(
+        "plan.html",
+        selected_destination=destination
+    )
 
 # ==========================================================
 # EXPLORE PAGE
