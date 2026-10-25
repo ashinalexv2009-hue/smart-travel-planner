@@ -74,51 +74,39 @@
                 >
 
 
-                <label>
-                    Destination
-                </label>
+<label>
+    Destination
+</label>
 
-                <select name="destination" required>
+<select name="destination" required>
 
-                    <option value="">
-                        Select destination
-                    </option>
+    <option value="" {% if not selected_destination %}selected{% endif %}>
+        Select destination
+    </option>
 
-                    <option>Kochi</option>
-                    <option>Munnar</option>
-                    <option>Wayanad</option>
-                    <option>Ooty</option>
-                    <option>Panaji</option>
-                    <option>Jaipur</option>
-                    <option>Delhi</option>
-                    <option>Mumbai</option>
-                    <option>Bengaluru</option>
-                    <option>Hyderabad</option>
-                    <option>Chennai</option>
-                    <option>Trivandrum</option>
-                    <option>Mysore</option>
-                    <option>Agra</option>
-                    <option>Shimla</option>
-                    <option>Manali</option>
-                    <option>Rishikesh</option>
-                    <option>Darjeeling</option>
-                    <option>Amritsar</option>
-                    <option>Pondicherry</option>
+    <option value="Kochi" {% if selected_destination == "Kochi" %}selected{% endif %}>Kochi</option>
+    <option value="Munnar" {% if selected_destination == "Munnar" %}selected{% endif %}>Munnar</option>
+    <option value="Wayanad" {% if selected_destination == "Wayanad" %}selected{% endif %}>Wayanad</option>
+    <option value="Ooty" {% if selected_destination == "Ooty" %}selected{% endif %}>Ooty</option>
+    <option value="Panaji" {% if selected_destination == "Panaji" %}selected{% endif %}>Panaji</option>
+    <option value="Jaipur" {% if selected_destination == "Jaipur" %}selected{% endif %}>Jaipur</option>
+    <option value="Delhi" {% if selected_destination == "Delhi" %}selected{% endif %}>Delhi</option>
+    <option value="Mumbai" {% if selected_destination == "Mumbai" %}selected{% endif %}>Mumbai</option>
+    <option value="Bengaluru" {% if selected_destination == "Bengaluru" %}selected{% endif %}>Bengaluru</option>
+    <option value="Hyderabad" {% if selected_destination == "Hyderabad" %}selected{% endif %}>Hyderabad</option>
+    <option value="Chennai" {% if selected_destination == "Chennai" %}selected{% endif %}>Chennai</option>
+    <option value="Trivandrum" {% if selected_destination == "Trivandrum" %}selected{% endif %}>Trivandrum</option>
+    <option value="Mysore" {% if selected_destination == "Mysore" %}selected{% endif %}>Mysore</option>
+    <option value="Agra" {% if selected_destination == "Agra" %}selected{% endif %}>Agra</option>
+    <option value="Shimla" {% if selected_destination == "Shimla" %}selected{% endif %}>Shimla</option>
+    <option value="Manali" {% if selected_destination == "Manali" %}selected{% endif %}>Manali</option>
+    <option value="Rishikesh" {% if selected_destination == "Rishikesh" %}selected{% endif %}>Rishikesh</option>
+    <option value="Darjeeling" {% if selected_destination == "Darjeeling" %}selected{% endif %}>Darjeeling</option>
+    <option value="Amritsar" {% if selected_destination == "Amritsar" %}selected{% endif %}>Amritsar</option>
+    <option value="Pondicherry" {% if selected_destination == "Pondicherry" %}selected{% endif %}>Pondicherry</option>
 
-                </select>
+</select>
 
-
-                <label>
-                    Number of Travelers
-                </label>
-
-                <input
-                    type="number"
-                    name="travelers"
-                    value="1"
-                    min="1"
-                    required
-                >
                 <label>
     One-way Sleeper Class Train Fare (₹ per person)
 </label>
