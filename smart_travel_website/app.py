@@ -306,83 +306,78 @@ def destination_details(city):
 # CALCULATE TRIP
 # ==========================================================
 
+
 @app.route("/calculate", methods=["POST"])
 def calculate():
 
-    start_city = request.form["start_city"]
+    start_city = request.form["start_city"].strip()
+    destination = request.form["destination"].strip()
 
-    destination = request.form["destination"]
+    # Read and validate the form values
+    try:
+        travelers = int(request.form["travelers"])
+        days = int(request.form["days"])
+        train_fare = float(request.form["train_fare"])
 
-    travelers = int(request.form["travelers"])
+        if travelers < 1 or days < 1 or train_fare < 0:
+            return "Please enter valid trip details."
 
-    days = int(request.form["days"])
+    except (ValueError, TypeError):
+        return "Please enter valid numbers for your trip."
 
-
-    # Find distance
-
-    distance = calculate_distance(
-        start_city,
-        destination
-    )
-
+    # Calculate distance for display only
+    distance = calculate_distance(start_city, destination)
 
     if distance is None:
-
-        return "Starting city not found."
-
+        return "Starting city not found. Please check the city name."
 
     # ======================================================
-    # TRAVEL COST
+    # TRAIN TRAVEL COST
+    # Enter the actual one-way Sleeper Class fare per person
+    # Return fare is estimated as twice the one-way fare
     # ======================================================
 
-    cost_per_km = 1.5
-
-    round_trip_distance = distance * 2
-
-    travel = round_trip_distance * cost_per_km
-
-    total_travel = travel * travelers
-
+    total_travel = train_fare * 2 * travelers
 
     # ======================================================
-    # HOTEL COST
+    # HOTEL COST — retain existing calculation
     # ======================================================
 
     conn = connect_database()
 
-    cursor = conn.cursor(dictionary=True)
+    if conn is None:
+        return "Database connection failed. Please try again later."
 
-    cursor.execute(
-        """
-        SELECT hotel_cost
-        FROM destinations
-        WHERE LOWER(city) = LOWER(%s)
-        """,
-        (destination,)
-    )
+    try:
+        cursor = conn.cursor(dictionary=True)
 
-    result = cursor.fetchone()
+        cursor.execute(
+            """
+            SELECT hotel_cost
+            FROM destinations
+            WHERE LOWER(city) = LOWER(%s)
+            """,
+            (destination,)
+        )
 
-    cursor.close()
-    conn.close()
+        result = cursor.fetchone()
 
+    finally:
+        if conn.is_connected():
+            cursor.close()
+            conn.close()
 
     if result is None:
-
         return "Destination not found."
 
-
-    hotel = result["hotel_cost"]
-
+    hotel = float(result["hotel_cost"])
     total_hotel = hotel * days
 
-
     # ======================================================
-    # TOTAL
+    # TOTAL TRIP COST
     # ======================================================
 
     total = total_travel + total_hotel
-
 
     return render_template(
         "result.html",
@@ -393,7 +388,8 @@ def calculate():
         distance=round(distance, 1),
         travel_cost=round(total_travel),
         hotel_cost=round(total_hotel),
-        total=round(total)
+        total=round(total),
+        train_fare=round(train_fare, 2)
     )
 
 
